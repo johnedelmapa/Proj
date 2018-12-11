@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener  {
 
@@ -50,16 +51,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return;
         }
 
-        //String savedPassword = preferences.getString(password, "");
-        //String savedUserName = preferences.getString(user, "");
+        if(preferences.contains(user) && preferences.contains(password)) {
+            String userDetails = preferences.getString(user + password + "data", user);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("display", userDetails);
+            editor.commit();
 
-        String userDetails = preferences.getString(user + password + "data", "No information on that user.");
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("display", userDetails);
-        editor.commit();
+            Intent displayScreen = new Intent(LoginActivity.this, DisplayScreen.class);
+            startActivity(displayScreen);
+        } else {
+            Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
+        }
 
-        Intent displayScreen = new Intent(LoginActivity.this, DisplayScreen.class);
-        startActivity(displayScreen);
     }
 
     @Override
@@ -72,6 +75,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.btnExit:
                 startActivity(new Intent(this, MainActivity.class));
                 break;
+
         }
     }
 

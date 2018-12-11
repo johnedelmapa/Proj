@@ -66,6 +66,7 @@ public class AccountActivity extends AppCompatActivity implements View.OnClickLi
         editor.commit();
 
         Toast.makeText(AccountActivity.this, "Account Successfully Registered", Toast.LENGTH_SHORT).show();
+
         Intent loginActivity = new Intent(AccountActivity.this, LoginActivity.class);
         startActivity(loginActivity);
     }

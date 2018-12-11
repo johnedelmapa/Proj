@@ -6,14 +6,58 @@
 
 
     <TextView
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_width="150dp"
+        android:id="@+id/tvResult"
+        android:layout_width="354dp"
         android:layout_height="50dp"
-        android:text="New Text"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="101dp"
+        android:text="Result"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
         android:id="@+id/textViewName"
+        android:layout_width="354dp"
+        android:layout_height="50dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="121dp" />
+        android:layout_marginTop="121dp"
+        android:text="New Text"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/etFirstnum"
+        android:layout_width="362dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="217dp"
+        android:ems="10"
+        android:hint="First Number"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/etSecondnum"
+        android:layout_width="359dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/etFirstnum"
+        android:layout_marginBottom="249dp"
+        android:ems="10"
+        android:hint="Second Number"
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/btnAdd"
+        android:layout_width="359dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/etFirstnum"
+        android:layout_marginBottom="181dp"
+        android:text="Add" />
 
 </RelativeLayout>
