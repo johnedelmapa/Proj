@@ -45,11 +45,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return;
         }
 
-        if(password.length()<6) {
-            etPassword.setError("Password must be 6 characters");
-            etPassword.requestFocus();
-            return;
-        }
 
         if(preferences.contains(user) && preferences.contains(password)) {
             String userDetails = preferences.getString(user + password + "data", user);

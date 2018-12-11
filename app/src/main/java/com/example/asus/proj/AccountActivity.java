@@ -14,7 +14,7 @@ import android.widget.Toast;
 public class AccountActivity extends AppCompatActivity implements View.OnClickListener
 {
 
-    EditText userName, password;
+    EditText userName, password, cpassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -30,6 +30,8 @@ public class AccountActivity extends AppCompatActivity implements View.OnClickLi
         findViewById(R.id.btnAppend).setOnClickListener(this);
         userName = (EditText) findViewById(R.id.etNewName);
         password = (EditText) findViewById(R.id.etNewPassword);
+        cpassword = (EditText) findViewById(R.id.etCPassword);
+
     }
 
     public void append()
@@ -37,9 +39,21 @@ public class AccountActivity extends AppCompatActivity implements View.OnClickLi
         SharedPreferences preferences = getSharedPreferences("MYPREFS",MODE_PRIVATE);
         String newUser  = userName.getText().toString();
         String newPassword = password.getText().toString();
+        String cPassword = cpassword.getText().toString();
+
+        String upperCaseChars = "(.*[A-Z].*)";
+        String lowerCaseChars = "(.*[a-z].*)";
+        String numbers = "(.*[0-9].*)";
+
 
         if(newUser.isEmpty()) {
             userName.setError("Username is required");
+            userName.requestFocus();
+            return;
+        }
+
+        if(newUser.length()<4) {
+            userName.setError("Username must be 4 characters");
             userName.requestFocus();
             return;
         }
@@ -55,6 +69,18 @@ public class AccountActivity extends AppCompatActivity implements View.OnClickLi
             password.requestFocus();
             return;
         }
+
+
+        if(!cPassword.equals(newPassword)) {
+            cpassword.setError("Password does not match");
+            cpassword.requestFocus();
+            return;
+        }
+
+
+
+
+
 
         SharedPreferences.Editor editor = preferences.edit();
         //stores 2 new instances of sharedprefs. Both the user and password's keys are the same as the input.

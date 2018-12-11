@@ -4,16 +4,6 @@
     android:layout_height="match_parent">
 
 
-    <EditText
-        android:id="@+id/etNewName"
-        android:layout_width="373dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="58dp"
-        android:ems="10"
-        android:hint="Username"
-        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/etNewPassword"
@@ -25,21 +15,42 @@
         android:hint="Password"
         android:inputType="textPassword" />
 
-    <Button
-        android:id="@+id/btnAppend"
-        android:layout_width="374dp"
+    <EditText
+        android:id="@+id/etCPassword"
+        android:layout_width="373dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etNewPassword"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="Confirm Password"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/etNewName"
+        android:layout_width="373dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="58dp"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/btnAppend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="207dp"
         android:text="Append" />
 
     <Button
         android:id="@+id/btnExit"
-        android:layout_width="374dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/btnAppend"
+        android:layout_centerVertical="true"
         android:text="Exit " />
 
     <TextView
