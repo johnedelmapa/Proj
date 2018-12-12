@@ -12,7 +12,7 @@ import android.widget.TextView;
 public class DisplayScreen extends AppCompatActivity implements View.OnClickListener {
 
     EditText firstNum, secondNum;
-    TextView result1;
+    TextView result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -33,16 +33,29 @@ public class DisplayScreen extends AppCompatActivity implements View.OnClickList
     public void bind(){
         firstNum = (EditText) findViewById(R.id.etFirstnum);
         secondNum = (EditText) findViewById(R.id.etSecondnum);
-        result1 = (TextView) findViewById(R.id.tvResult);
+        result = (TextView) findViewById(R.id.tvResult);
         findViewById(R.id.btnAdd).setOnClickListener(this);
     }
 
     public void Add()
     {
-        Double one = Double.parseDouble(firstNum.getText().toString());
-        Double two = Double.parseDouble(secondNum.getText().toString());
-        Double result = one + two;
-        result1.setText(Double.toString(result));
+        String stringOne = firstNum.getText().toString();
+        String stringTwo = secondNum.getText().toString();
+
+        if(stringOne.isEmpty()) {
+            firstNum.setError("You must enter value one");
+            firstNum.requestFocus();
+            return;
+        }
+
+        if(stringTwo.isEmpty()) {
+            secondNum.setError("You must enter value two");
+            secondNum.requestFocus();
+            return;
+        }
+
+        Double sum =  (Double.parseDouble(stringOne)) + (Double.parseDouble(stringTwo));
+        result.setText(Double.toString(sum));
     }
 
 

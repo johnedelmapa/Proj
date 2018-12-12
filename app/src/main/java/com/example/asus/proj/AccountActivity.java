@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.regex.Pattern;
+
 
 public class AccountActivity extends AppCompatActivity implements View.OnClickListener
 {
@@ -41,9 +43,9 @@ public class AccountActivity extends AppCompatActivity implements View.OnClickLi
         String newPassword = password.getText().toString();
         String cPassword = cpassword.getText().toString();
 
-        String upperCaseChars = "(.*[A-Z].*)";
-        String lowerCaseChars = "(.*[a-z].*)";
-        String numbers = "(.*[0-9].*)";
+        Pattern UpperCasePatten = Pattern.compile("[A-Z ]");
+        Pattern lowerCasePatten = Pattern.compile("[a-z ]");
+        Pattern digitCasePatten = Pattern.compile("[0-9 ]");
 
 
         if(newUser.isEmpty()) {
@@ -52,8 +54,8 @@ public class AccountActivity extends AppCompatActivity implements View.OnClickLi
             return;
         }
 
-        if(newUser.length()<4) {
-            userName.setError("Username must be 4 characters");
+        if(newUser.length()<4 || newUser.length()>10) {
+            userName.setError("Username must be 4-10 characters");
             userName.requestFocus();
             return;
         }
@@ -64,22 +66,35 @@ public class AccountActivity extends AppCompatActivity implements View.OnClickLi
             return;
         }
 
-        if(newPassword.length()<6) {
-            password.setError("Password must be 6 characters");
+        if(newPassword.length()<6 || newPassword.length()>12) {
+            password.setError("Password must be 6-12 characters");
             password.requestFocus();
             return;
         }
 
+        if(!UpperCasePatten.matcher(newPassword).find()) {
+            password.setError("Password must have atleast one uppercase character");
+            password.requestFocus();
+            return;
+        }
+
+        if(!lowerCasePatten.matcher(newPassword).find()) {
+            password.setError("Password must have atleast one lowercase character");
+            password.requestFocus();
+            return;
+        }
+
+        if(!digitCasePatten.matcher(newPassword).find()) {
+            password.setError("Password must have atleast one lowercase character");
+            password.requestFocus();
+            return;
+        }
 
         if(!cPassword.equals(newPassword)) {
             cpassword.setError("Password does not match");
             cpassword.requestFocus();
             return;
         }
-
-
-
-
 
 
         SharedPreferences.Editor editor = preferences.edit();
